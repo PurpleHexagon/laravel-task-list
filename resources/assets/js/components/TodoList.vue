@@ -1,19 +1,18 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Todo:</div>
-
-                    <div class="panel-body">
-                        <ul>
-                            <li v-for="task in taskList">
-                                <div>
-                                    {{ task.title }} - {{ task.details }}
-                                </div>
-                            </li>
-                        </ul>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Todos</h3>
+                        <p class="card-text">Add todos and view them below</p>
                     </div>
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" v-for="task in taskList">
+                            {{ task.title }} - {{ task.details }}
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
