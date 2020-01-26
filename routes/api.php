@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware([])->get('/tasks', function (Request $request) {
-    $tasks = Task::all()->toArray();
+    $tasks = Task::orderBy('id')->get()->toArray();
 
     return $tasks;
 });

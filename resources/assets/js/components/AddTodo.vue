@@ -7,7 +7,7 @@
       <div class="form-group">
         <input v-model="details" type="text" class="form-control" id="details" placeholder="Details"/>
       </div>
-      <button @click="add" type="button" class="btn btn-primary">Add</button>
+      <button @click="addTask" type="button" class="btn btn-primary">Add</button>
     </form>
   </div>
 </template>
@@ -22,7 +22,7 @@
       details: ''
     },
     methods: {
-      add() {
+      addTask() {
         axios.post(
           '/api/tasks',
           {

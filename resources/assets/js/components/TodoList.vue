@@ -16,8 +16,8 @@
 
           <ul class="list-group list-group-flush">
             <li class="list-group-item" v-for="task in taskList" style="text-align: left; padding-left: 2rem;">
-              <input :checked="task.is_complete === true" @click="putTodo(task.id, task.is_complete)" type="checkbox" class="form-check-input"/>
-              {{ task.title }} - {{ task.details }}
+              <input v-model="task.is_complete" @click="putTodo(task.id, task.is_complete)" type="checkbox" />
+              <span :class="task.is_complete ? 'strikethrough': ''">{{ task.title }} - {{ task.details }}</span>
             </li>
           </ul>
         </div>
@@ -50,8 +50,21 @@
           {
             is_complete: !isComplete,
           }
-        )
+        ).then(() => {
+          axios.get(
+            '/api/tasks'
+          ).then((res) => {
+            this.tasks = JSON.stringify(res.data)
+            this.$forceUpdate()
+          })
+        })
       }
     }
   }
 </script>
+
+<style scoped>
+  .strikethrough {
+    text-decoration: line-through;
+  }
+</style>

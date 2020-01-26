@@ -44657,8 +44657,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.tasks = JSON.stringify(tasks);
     },
     putTodo: function putTodo(id, isComplete) {
+      var _this = this;
+
       axios.put("/api/tasks/" + id, {
         is_complete: !isComplete
+      }).then(function () {
+        axios.get('/api/tasks').then(function (res) {
+          _this.tasks = JSON.stringify(res.data);
+          _this.$forceUpdate();
+        });
       });
     }
   }
@@ -44668,13 +44675,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
+
+/* styles */
+__webpack_require__(63)
+
 var Component = __webpack_require__(37)(
   /* script */
   __webpack_require__(52),
   /* template */
   __webpack_require__(54),
   /* scopeId */
-  null,
+  "data-v-29e54e83",
   /* cssModules */
   null
 )
@@ -44729,19 +44740,42 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "padding-left": "2rem"
       }
     }, [_c('input', {
-      staticClass: "form-check-input",
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (task.is_complete),
+        expression: "task.is_complete"
+      }],
       attrs: {
         "type": "checkbox"
       },
       domProps: {
-        "checked": task.is_complete === true
+        "checked": Array.isArray(task.is_complete) ? _vm._i(task.is_complete, null) > -1 : (task.is_complete)
       },
       on: {
         "click": function($event) {
           return _vm.putTodo(task.id, task.is_complete)
+        },
+        "change": function($event) {
+          var $$a = task.is_complete,
+            $$el = $event.target,
+            $$c = $$el.checked ? (true) : (false);
+          if (Array.isArray($$a)) {
+            var $$v = null,
+              $$i = _vm._i($$a, $$v);
+            if ($$el.checked) {
+              $$i < 0 && (_vm.$set(task, "is_complete", $$a.concat([$$v])))
+            } else {
+              $$i > -1 && (_vm.$set(task, "is_complete", $$a.slice(0, $$i).concat($$a.slice($$i + 1))))
+            }
+          } else {
+            _vm.$set(task, "is_complete", $$c)
+          }
         }
       }
-    }), _vm._v("\n            " + _vm._s(task.title) + " - " + _vm._s(task.details) + "\n          ")])
+    }), _vm._v(" "), _c('span', {
+      class: task.is_complete ? 'strikethrough' : ''
+    }, [_vm._v(_vm._s(task.title) + " - " + _vm._s(task.details))])])
   }), 0)])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
@@ -44792,7 +44826,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     details: ''
   },
   methods: {
-    add: function add() {
+    addTask: function addTask() {
       var _this = this;
 
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/tasks', {
@@ -44914,7 +44948,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "button"
     },
     on: {
-      "click": _vm.add
+      "click": _vm.addTask
     }
   }, [_vm._v("Add")])])])
 },staticRenderFns: []}
@@ -45205,6 +45239,39 @@ module.exports = function listToStyles (parentId, list) {
   return styles
 }
 
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(45)();
+exports.push([module.i, "\n.strikethrough[data-v-29e54e83] {\n  text-decoration: line-through;\n}\n", ""]);
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(62);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(60)("9ff921f4", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-29e54e83\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TodoList.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-29e54e83\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TodoList.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ })
 /******/ ]);
