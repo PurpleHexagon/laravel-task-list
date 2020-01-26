@@ -38,3 +38,8 @@ Watch JS
 ```bash
 docker exec -it web bash -c "npm run watch"
 ```
+
+Run Tests:
+```bash
+docker exec -it web bash -c "php vendor/bin/phpunit" 
+```
