@@ -44653,6 +44653,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   methods: {
+    updateTasks: function updateTasks(tasks) {
+      this.tasks = JSON.stringify(tasks);
+    },
     putTodo: function putTodo(id, isComplete) {
       axios.put("/api/tasks/" + id, {
         is_complete: !isComplete
@@ -44706,7 +44709,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "row"
   }, [_c('div', {
     staticClass: "col-md-12"
-  }, [_c('add-todo')], 1)]), _vm._v(" "), _c('div', {
+  }, [_c('add-todo', {
+    on: {
+      "updateTasks": _vm.updateTasks
+    }
+  })], 1)]), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, [_c('div', {
     staticClass: "col-md-12"
@@ -44734,7 +44741,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           return _vm.putTodo(task.id, task.is_complete)
         }
       }
-    }), _vm._v("\n                        " + _vm._s(task.title) + " - " + _vm._s(task.details) + "\n                    ")])
+    }), _vm._v("\n            " + _vm._s(task.title) + " - " + _vm._s(task.details) + "\n          ")])
   }), 0)])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
@@ -44786,10 +44793,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     add: function add() {
+      var _this = this;
+
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/tasks', {
         user_id: 1,
         title: this.title,
         details: this.details
+      }).then(function () {
+        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/tasks').then(function (res) {
+          _this.$emit('updateTasks', res.data);
+        });
       });
     }
   }
@@ -44800,7 +44813,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(45)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 /* 57 */

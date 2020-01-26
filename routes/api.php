@@ -14,6 +14,12 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::middleware([])->get('/tasks', function (Request $request) {
+    $tasks = Task::all()->toArray();
+
+    return $tasks;
+});
+
 Route::middleware([])->post('/tasks', function (Request $request) {
     $task = new Task();
     $task->fill([
