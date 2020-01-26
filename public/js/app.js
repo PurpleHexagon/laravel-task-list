@@ -44574,6 +44574,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -44639,8 +44640,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "list-group list-group-flush"
   }, _vm._l((_vm.taskList), function(task) {
     return _c('li', {
-      staticClass: "list-group-item"
-    }, [_vm._v("\n                        " + _vm._s(task.title) + " - " + _vm._s(task.details) + "\n                    ")])
+      staticClass: "list-group-item",
+      staticStyle: {
+        "text-align": "left",
+        "padding-left": "2rem"
+      }
+    }, [_c('input', {
+      staticClass: "form-check-input",
+      attrs: {
+        "type": "checkbox"
+      }
+    }), _vm._v("\n                        " + _vm._s(task.title) + " - " + _vm._s(task.details) + "\n                    ")])
   }), 0)])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
@@ -44649,7 +44659,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "card-title"
   }, [_vm._v("Todos")]), _vm._v(" "), _c('p', {
     staticClass: "card-text"
-  }, [_vm._v("Add todos and view them below")])])
+  }, [_vm._v("Unarchived tasks are displayed below.")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {

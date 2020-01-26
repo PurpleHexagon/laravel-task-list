@@ -5,11 +5,12 @@
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title">Todos</h3>
-                        <p class="card-text">Add todos and view them below</p>
+                        <p class="card-text">Unarchived tasks are displayed below.</p>
                     </div>
 
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item" v-for="task in taskList">
+                        <li class="list-group-item" v-for="task in taskList" style="text-align: left; padding-left: 2rem;">
+                            <input type="checkbox" class="form-check-input"/>
                             {{ task.title }} - {{ task.details }}
                         </li>
                     </ul>
