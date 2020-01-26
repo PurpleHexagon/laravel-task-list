@@ -1,5 +1,6 @@
 <?php
 
+use App\Task;
 use Illuminate\Http\Request;
 
 /*
@@ -13,6 +14,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware([])->post('/tasks', function (Request $request) {
+    $task = new Task();
+    $task->fill([
+        'user_id' => $request->post('user_id'),
+        'title' => $request->post('title'),
+        'details' => $request->post('details'),
+    ]);
+
+    $task->save();
+    return $task->toArray();
 });
