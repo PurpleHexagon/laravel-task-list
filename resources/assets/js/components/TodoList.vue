@@ -2,11 +2,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                <add-todo></add-todo>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title">Todos</h3>
                         <p class="card-text">Unarchived tasks are displayed below.</p>
                     </div>
+
 
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item" v-for="task in taskList" style="text-align: left; padding-left: 2rem;">
@@ -21,8 +27,10 @@
 </template>
 
 <script>
+    import AddTodo from "./AddTodo";
     export default {
-        props: {
+      components: {AddTodo},
+      props: {
           tasks: {
             type: String
           }
