@@ -30,7 +30,7 @@
             title: this.title,
             details: this.details
           }
-      )
+        )
       }
     }
   }

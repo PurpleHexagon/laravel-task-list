@@ -44651,6 +44651,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     taskList: function taskList() {
       return JSON.parse(this.tasks);
     }
+  },
+  methods: {
+    putTodo: function putTodo(id, isComplete) {
+      axios.put("/api/tasks/" + id, {
+        is_complete: !isComplete
+      });
+    }
   }
 });
 
@@ -44718,6 +44725,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "form-check-input",
       attrs: {
         "type": "checkbox"
+      },
+      domProps: {
+        "checked": task.is_complete === true
+      },
+      on: {
+        "click": function($event) {
+          return _vm.putTodo(task.id, task.is_complete)
+        }
       }
     }), _vm._v("\n                        " + _vm._s(task.title) + " - " + _vm._s(task.details) + "\n                    ")])
   }), 0)])])])])

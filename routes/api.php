@@ -25,3 +25,10 @@ Route::middleware([])->post('/tasks', function (Request $request) {
     $task->save();
     return $task->toArray();
 });
+
+Route::middleware([])->put('/tasks/{task}', function (Request $request, Task $task) {
+    $task->is_complete = $request->post('is_complete');
+    $task->save();
+
+    return $task->toArray();
+});
