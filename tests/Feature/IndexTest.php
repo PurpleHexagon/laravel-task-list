@@ -7,14 +7,14 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ExampleTest extends TestCase
+class IndexTest extends TestCase
 {
     /**
-     * A basic test example.
+     * Test index route returns 200 for GET
      *
      * @return void
      */
-    public function testBasicTest()
+    public function testBasicTest(): void
     {
         $response = $this->get('/');
 
