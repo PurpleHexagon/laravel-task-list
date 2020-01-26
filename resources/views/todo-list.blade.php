@@ -83,7 +83,7 @@
                 </div>
 
                 <div id="app">
-                    <todo-list></todo-list>
+                    <todo-list tasks="{{ json_encode($tasks) }}"></todo-list>
                 </div>
                 <script type="text/javascript" src="js/app.js"></script>
             </div>

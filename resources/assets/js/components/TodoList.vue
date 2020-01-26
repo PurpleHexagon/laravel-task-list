@@ -6,7 +6,13 @@
                     <div class="panel-heading">Todo:</div>
 
                     <div class="panel-body">
-                        ...
+                        <ul>
+                            <li v-for="task in taskList">
+                                <div>
+                                    {{ task.title }} - {{ task.details }}
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -16,8 +22,15 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
+        props: {
+          tasks: {
+            type: String
+          }
+        },
+        computed: {
+          taskList() {
+            return JSON.parse(this.tasks)
+          }
         }
     }
 </script>
