@@ -79,11 +79,11 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Todo List
                 </div>
 
                 <div id="app">
-                    <example></example>
+                    <todo-list></todo-list>
                 </div>
                 <script type="text/javascript" src="js/app.js"></script>
             </div>
