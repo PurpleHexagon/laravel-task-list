@@ -13,8 +13,8 @@
             <p class="card-text">Unarchived tasks are displayed below.</p>
           </div>
 
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item" v-for="task in taskList" style="text-align: left; padding-left: 2rem;">
+          <ul class="list-group list-group-flush todo-list">
+            <li class="list-group-item todo-list_list-group-item" v-for="task in taskList">
               <input v-model="task.is_complete" @click="putTodo(task.id, task.is_complete)" type="checkbox" />
               <span :class="task.is_complete ? 'strikethrough': ''">
                 {{ task.title }} - {{ task.details }}
@@ -72,5 +72,10 @@
 
   .main.container {
     max-width: 400px;
+  }
+
+  .todo-list_list-group-item {
+    text-align: left;
+    padding-left: 2rem;
   }
 </style>

@@ -44733,14 +44733,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "card"
   }, [_vm._m(0), _vm._v(" "), _c('ul', {
-    staticClass: "list-group list-group-flush"
+    staticClass: "list-group list-group-flush todo-list"
   }, _vm._l((_vm.taskList), function(task) {
     return _c('li', {
-      staticClass: "list-group-item",
-      staticStyle: {
-        "text-align": "left",
-        "padding-left": "2rem"
-      }
+      staticClass: "list-group-item todo-list_list-group-item"
     }, [_c('input', {
       directives: [{
         name: "model",
@@ -45252,7 +45248,7 @@ module.exports = function listToStyles (parentId, list) {
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(45)();
-exports.push([module.i, "\n.strikethrough[data-v-29e54e83] {\n  text-decoration: line-through;\n}\n.main.container[data-v-29e54e83] {\n  max-width: 400px;\n}\n", ""]);
+exports.push([module.i, "\n.strikethrough[data-v-29e54e83] {\n  text-decoration: line-through;\n}\n.main.container[data-v-29e54e83] {\n  max-width: 400px;\n}\n.todo-list_list-group-item[data-v-29e54e83] {\n  text-align: left;\n  padding-left: 2rem;\n}\n", ""]);
 
 /***/ }),
 /* 63 */
