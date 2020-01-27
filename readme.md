@@ -8,6 +8,7 @@ User: user1
 email: user1@example.com
 password: secret
 
+Once all commands below have been run you should be able to access the application at http://localhost:8772/
 
 ## Requirements
 
