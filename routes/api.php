@@ -20,7 +20,7 @@ Route::middleware([])->get('/tasks', function (Request $request) {
     return $tasks;
 });
 
-Route::middleware([])->post('/tasks', function (Request $request) {
+Route::middleware([])->post('/tasks', function (\App\Http\Requests\CreateTasks $request) {
     $task = new Task();
     $task->fill([
         'user_id' => $request->post('user_id'),

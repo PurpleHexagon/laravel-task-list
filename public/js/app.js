@@ -45316,7 +45316,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.inProgress = true;
 
-      this.handler().then(function () {
+      this.handler().finally(function () {
         _this.inProgress = false;
       });
     }
