@@ -6,10 +6,14 @@ This is an example todo list application built with Laravel, Vue JS and Postgres
 
 Docker and Docker Compose must both be installed on the host.
 
-You will need to create the database:
+You will need to create the main database and a test database:
 
 ```sql
 CREATE DATABASE todo_list
+```
+
+```sql
+CREATE DATABASE todo_list_test
 ```
 
 ## Commands
