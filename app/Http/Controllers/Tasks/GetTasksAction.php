@@ -18,7 +18,7 @@ class GetTasksAction extends Controller
      */
     public function __invoke(Request $request): array
     {
-        $tasks = Task::orderBy('id')->get()->toArray();
+        $tasks = Task::orderBy('created_at')->get()->toArray();
 
         return $tasks;
     }

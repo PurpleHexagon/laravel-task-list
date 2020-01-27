@@ -13,7 +13,7 @@ class IndexAction extends Controller
      */
     public function __invoke()
     {
-        $tasks = \App\Task::orderBy('id')->get()->toArray();
+        $tasks = \App\Task::orderBy('created_at')->get()->toArray();
         return view('todo-list', ['tasks' => $tasks]);
     }
 }
