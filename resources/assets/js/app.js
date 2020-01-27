@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+import store from './store'
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -16,5 +17,6 @@ require('./bootstrap');
 Vue.component('todo-list', require('./components/TodoList.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    store,
 });

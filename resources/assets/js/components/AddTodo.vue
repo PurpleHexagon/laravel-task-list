@@ -7,7 +7,7 @@
       <div class="form-group">
         <input v-model="details" type="text" class="form-control" id="details" placeholder="Details"/>
       </div>
-      <async-button :handler="addTask"></async-button>
+      <async-button :handler="addTaskWrapper"></async-button>
     </form>
   </div>
 </template>
@@ -15,6 +15,8 @@
 <script>
   import axios from 'axios'
   import AsyncButton from "./AsyncButton"
+  import { merge } from 'lodash'
+  import { mapActions } from 'vuex'
 
   export default {
     name: "AddTodo",
@@ -25,26 +27,21 @@
         details: ''
       }
     },
-    methods: {
-      addTask() {
-        return axios.post(
-          '/api/tasks',
-          {
-            user_id: 1,
-            title: this.title,
-            details: this.details
-          }
-        ).then(() => {
-          axios.get(
-            '/api/tasks'
-          ).then((res) => {
+    methods: merge({
+        addTaskWrapper() {
+          return this.addTask({
+            task: {
+              title: this.title,
+              details: this.details
+            }
+          }).then(() => {
             this.title = ''
             this.details = ''
-            this.$emit('updateTasks', res.data)
           })
-        })
-      }
-    }
+        }
+      },
+      mapActions(['addTask'])
+    )
   }
 </script>
 

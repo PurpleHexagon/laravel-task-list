@@ -2,7 +2,7 @@
   <div class="main container">
     <div class="row">
       <div class="col-md-12">
-        <add-todo v-on:updateTasks="updateTasks"></add-todo>
+        <add-todo></add-todo>
       </div>
     </div>
     <div class="row">
@@ -14,7 +14,7 @@
           </div>
 
           <ul class="list-group list-group-flush todo-list">
-            <li class="list-group-item todo-list_list-group-item" v-for="task in taskList">
+            <li class="list-group-item todo-list_list-group-item" v-for="task in tasks">
               <input v-model="task.is_complete" @click="putTodo(task.id, task.is_complete)" type="checkbox" />
               <span :class="task.is_complete ? 'strikethrough': ''">
                 {{ task.title }} - {{ task.details }}
@@ -29,39 +29,26 @@
 
 <script>
   import AddTodo from "./AddTodo"
+  import { mapActions, mapGetters } from 'vuex'
+  import { merge } from 'lodash'
 
   export default {
     components: {AddTodo},
-    props: {
-      tasks: {
-        type: String
-      }
+    created() {
+      this.fetchTasks()
     },
-    computed: {
-      taskList() {
-        return JSON.parse(this.tasks)
-      }
-    },
-    methods: {
-      updateTasks(tasks) {
-        this.tasks = JSON.stringify(tasks)
-      },
+    computed: merge(
+      {},
+      mapGetters(['tasks'])
+    ),
+    methods: merge({
       putTodo(id, isComplete) {
-        axios.put(
-          `/api/tasks/${id}`,
-          {
-            is_complete: !isComplete,
-          }
-        ).then(() => {
-          axios.get(
-            '/api/tasks'
-          ).then((res) => {
-            this.tasks = JSON.stringify(res.data)
-            this.$forceUpdate()
-          })
-        })
+        return this.toggleTaskComplete({ id, isComplete: !isComplete })
       }
-    }
+    },
+    mapActions(
+      ['fetchTasks', 'toggleTaskComplete']
+    ))
   }
 </script>
 

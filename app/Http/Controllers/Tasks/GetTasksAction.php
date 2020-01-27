@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Tasks;
 use App\Http\Controllers\Controller;
 use App\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class GetTasksAction
@@ -18,7 +19,9 @@ class GetTasksAction extends Controller
      */
     public function __invoke(Request $request): array
     {
-        $tasks = Task::orderBy('created_at')->get()->toArray();
+        $user = Auth::user();
+
+        $tasks = Task::orderBy('created_at')->where(['user_id' => $user->id])->get()->toArray();
 
         return $tasks;
     }

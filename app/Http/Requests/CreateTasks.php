@@ -28,8 +28,8 @@ class CreateTasks extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|alpha_dash|max:100',
-            'details' => 'required|alpha_dash|max:255',
+            'title' => 'required|max:100',
+            'details' => 'required|max:255',
         ];
     }
 }
