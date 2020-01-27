@@ -7,16 +7,18 @@
       <div class="form-group">
         <input v-model="details" type="text" class="form-control" id="details" placeholder="Details"/>
       </div>
-      <button @click="addTask" type="button" class="btn btn-primary">Add</button>
+      <async-button :handler="addTask"></async-button>
     </form>
   </div>
 </template>
 
 <script>
   import axios from 'axios'
+  import AsyncButton from "./AsyncButton"
 
   export default {
     name: "AddTodo",
+    components: {AsyncButton},
     data() {
       return {
         title: '',
@@ -25,7 +27,7 @@
     },
     methods: {
       addTask() {
-        axios.post(
+        return axios.post(
           '/api/tasks',
           {
             user_id: 1,

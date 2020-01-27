@@ -7,7 +7,7 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <div class="card">
+        <div class="card mb-5">
           <div class="card-body">
             <h3 class="card-title">Todos</h3>
             <p class="card-text">Unarchived tasks are displayed below.</p>
