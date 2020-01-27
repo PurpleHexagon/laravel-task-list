@@ -1,0 +1,2 @@
+INSERT INTO public.tasks (id, user_id, title, details, created_at, updated_at, is_complete) VALUES (1, 1, 'Walk dog', 'Go to the park', '2020-01-27 13:52:27', '2020-01-27 13:52:27', false);
+INSERT INTO public.tasks (id, user_id, title, details, created_at, updated_at, is_complete) VALUES (2, 1, 'Go shopping', 'Eggs, Milk, Tea', '2020-01-27 13:52:41', '2020-01-27 13:52:41', false);

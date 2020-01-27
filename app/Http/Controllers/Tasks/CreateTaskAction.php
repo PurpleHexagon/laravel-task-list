@@ -23,7 +23,7 @@ class CreateTaskAction extends Controller
         $task = new Task();
         $task->fill([
             'title' => $request->post('title'),
-            'details' => $request->post('details'),
+            'details' => $request->post('details')
         ]);
 
         $task->user_id = $user->id;

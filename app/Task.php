@@ -18,4 +18,11 @@ class Task extends Model
     protected $fillable = [
         'title', 'details',
     ];
+
+    /**
+     * @var array
+     */
+    protected $attributes = [
+        'is_complete' => false,
+    ];
 }
