@@ -29,7 +29,7 @@
       wrappedHandler() {
         this.inProgress = true
 
-        this.handler().finally(() => {
+        return this.handler().finally(() => {
           this.inProgress = false
         })
       }

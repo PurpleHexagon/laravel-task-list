@@ -7,6 +7,8 @@
 
 require('./bootstrap');
 import store from './store'
+import Vue from 'vue'
+import Notifications from 'vue-notification'
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -15,6 +17,7 @@ import store from './store'
  */
 
 Vue.component('todo-list', require('./components/TodoList.vue'));
+Vue.use(Notifications)
 
 const app = new Vue({
     el: '#app',

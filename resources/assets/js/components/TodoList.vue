@@ -1,5 +1,7 @@
 <template>
   <div class="main container">
+    <notifications position="top left" />
+
     <div class="row">
       <div class="col-md-12">
         <add-todo></add-todo>
