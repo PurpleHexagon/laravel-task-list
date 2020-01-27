@@ -2,6 +2,13 @@
 
 This is an example todo list application built with Laravel, Vue JS and Postgres.
 
+Test user credentials:
+
+User: user1
+email: user1@example.com
+password: secret
+
+
 ## Requirements
 
 Docker and Docker Compose must both be installed on the host.

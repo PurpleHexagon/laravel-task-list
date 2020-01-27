@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -22,7 +23,8 @@ class IndexTest extends TestCase
      */
     public function testIndexReturns200(): void
     {
-        $response = $this->get('/');
+        $user = factory(User::class)->create();
+        $response = $this->actingAs($user)->get('/');
 
         $response->assertStatus(200);
     }
@@ -34,8 +36,33 @@ class IndexTest extends TestCase
      */
     public function testGetTasksReturns200(): void
     {
-        $response = $this->get('/api/tasks');
+        $user = factory(User::class)->create();
+        $response = $this->actingAs($user)->get('/api/tasks');
 
         $response->assertStatus(200);
+    }
+
+    /**
+     * Test index route returns 200 for GET
+     *
+     * @return void
+     */
+    public function testIndexReturnsUnauthenticatedWhenNoUser(): void
+    {
+        $response = $this->get('/');
+
+        $response->assertStatus(302);
+    }
+
+    /**
+     * Test tasks API GET all route returns 200
+     *
+     * @return void
+     */
+    public function testGetTasksReturnsUnauthenticatedWhenNoUser(): void
+    {
+        $response = $this->get('/api/tasks');
+
+        $response->assertStatus(302);
     }
 }

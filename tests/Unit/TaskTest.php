@@ -4,8 +4,6 @@ namespace Tests\Unit;
 
 use App\Task;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class TaskTest extends TestCase
 {

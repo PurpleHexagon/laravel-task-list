@@ -16,6 +16,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware([])->get('/tasks', 'Tasks\GetTasksAction');
-Route::middleware([])->post('/tasks', 'Tasks\CreateTaskAction');
-Route::middleware([])->put('/tasks/{task}', 'Tasks\UpdateTaskAction');
+Route::middleware(['auth'])->get('/tasks', 'Tasks\GetTasksAction');
+Route::middleware(['auth'])->post('/tasks', 'Tasks\CreateTaskAction');
+Route::middleware(['auth'])->put('/tasks/{task}', 'Tasks\UpdateTaskAction');
