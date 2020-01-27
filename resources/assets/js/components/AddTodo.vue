@@ -17,9 +17,11 @@
 
   export default {
     name: "AddTodo",
-    data: {
-      title: '',
-      details: ''
+    data() {
+      return {
+        title: '',
+        details: ''
+      }
     },
     methods: {
       addTask() {
@@ -34,6 +36,8 @@
           axios.get(
             '/api/tasks'
           ).then((res) => {
+            this.title = ''
+            this.details = ''
             this.$emit('updateTasks', res.data)
           })
         })

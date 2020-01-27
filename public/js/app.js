@@ -44638,6 +44638,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -44715,7 +44717,7 @@ module.exports = Component.exports
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "container"
+    staticClass: "main container"
   }, [_c('div', {
     staticClass: "row"
   }, [_c('div', {
@@ -44775,7 +44777,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }), _vm._v(" "), _c('span', {
       class: task.is_complete ? 'strikethrough' : ''
-    }, [_vm._v(_vm._s(task.title) + " - " + _vm._s(task.details))])])
+    }, [_vm._v("\n              " + _vm._s(task.title) + " - " + _vm._s(task.details) + "\n            ")])])
   }), 0)])])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
@@ -44821,10 +44823,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AddTodo",
-  data: {
-    title: '',
-    details: ''
+  data: function data() {
+    return {
+      title: '',
+      details: ''
+    };
   },
+
   methods: {
     addTask: function addTask() {
       var _this = this;
@@ -44835,6 +44840,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         details: this.details
       }).then(function () {
         __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/tasks').then(function (res) {
+          _this.title = '';
+          _this.details = '';
           _this.$emit('updateTasks', res.data);
         });
       });
@@ -44847,7 +44854,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(45)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 /* 57 */
@@ -45245,7 +45252,7 @@ module.exports = function listToStyles (parentId, list) {
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(45)();
-exports.push([module.i, "\n.strikethrough[data-v-29e54e83] {\n  text-decoration: line-through;\n}\n", ""]);
+exports.push([module.i, "\n.strikethrough[data-v-29e54e83] {\n  text-decoration: line-through;\n}\n.main.container[data-v-29e54e83] {\n  max-width: 400px;\n}\n", ""]);
 
 /***/ }),
 /* 63 */
