@@ -13,7 +13,6 @@
 </template>
 
 <script>
-  import axios from 'axios'
   import AsyncButton from "./AsyncButton"
   import { merge } from 'lodash'
   import { mapActions } from 'vuex'

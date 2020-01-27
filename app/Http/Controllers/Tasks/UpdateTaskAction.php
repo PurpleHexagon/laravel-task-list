@@ -26,6 +26,11 @@ class UpdateTaskAction extends Controller
             throw new UnauthorizedException('Not Authorized');
         }
 
+        $task->fill([
+            'title' => $request->post('title'),
+            'details' => $request->post('details'),
+        ]);
+
         $task->is_complete = $request->post('is_complete');
         $task->save();
 

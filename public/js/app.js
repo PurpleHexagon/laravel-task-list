@@ -20469,13 +20469,11 @@ module.exports = function spread(callback) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AsyncButton__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__AsyncButton___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__AsyncButton__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AsyncButton__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AsyncButton___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__AsyncButton__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(10);
 //
 //
 //
@@ -20490,7 +20488,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
 
 
 
@@ -20498,7 +20495,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AddTodo",
-  components: { AsyncButton: __WEBPACK_IMPORTED_MODULE_1__AsyncButton___default.a },
+  components: { AsyncButton: __WEBPACK_IMPORTED_MODULE_0__AsyncButton___default.a },
   data: function data() {
     return {
       title: '',
@@ -20506,7 +20503,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
 
-  methods: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_lodash__["merge"])({
+  methods: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_lodash__["merge"])({
     addTaskWrapper: function addTaskWrapper() {
       var _this = this;
 
@@ -20520,7 +20517,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this.details = '';
       });
     }
-  }, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_vuex__["c" /* mapActions */])(['addTask']))
+  }, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapActions */])(['addTask']))
 });
 
 /***/ }),
@@ -20581,6 +20578,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__AsyncButton__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__AsyncButton___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__AsyncButton__);
 //
 //
 //
@@ -20612,23 +20611,88 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: { AddTodo: __WEBPACK_IMPORTED_MODULE_0__AddTodo___default.a },
+  components: { AddTodo: __WEBPACK_IMPORTED_MODULE_0__AddTodo___default.a, AsyncButton: __WEBPACK_IMPORTED_MODULE_3__AsyncButton___default.a },
+  data: function data() {
+    return {
+      showModal: false,
+      taskToEditId: null
+    };
+  },
   created: function created() {
     this.fetchTasks();
   },
 
-  computed: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_lodash__["merge"])({}, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapGetters */])(['tasks'])),
-  methods: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_lodash__["merge"])({
-    putTodo: function putTodo(id, isComplete) {
-      return this.toggleTaskComplete({ id: id, isComplete: !isComplete });
+  computed: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_lodash__["merge"])({
+    taskToEdit: function taskToEdit() {
+      var _this = this;
+
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_lodash__["find"])(this.tasks, function (task) {
+        return task.id == _this.taskToEditId;
+      });
     }
-  }, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapActions */])(['fetchTasks', 'toggleTaskComplete']))
+  }, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapGetters */])(['tasks'])),
+  methods: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_lodash__["merge"])({
+    editTaskWrapper: function editTaskWrapper() {
+      var _this2 = this;
+
+      return this.updateTask({
+        id: this.taskToEditId,
+        task: this.taskToEdit
+      }).then(function () {
+        _this2.taskToEditId = null;
+        _this2.showModal = false;
+      });
+    },
+    showModalHandler: function showModalHandler(id) {
+      this.showModal = true;
+      this.taskToEditId = id;
+    },
+    putTodo: function putTodo(id, task) {
+      task.is_complete = !task.is_complete;
+      return this.updateTask({ id: id, task: task });
+    }
+  }, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapActions */])(['fetchTasks', 'updateTask']))
 });
 
 /***/ }),
@@ -20735,15 +20799,13 @@ window.axios.defaults.headers.common = {
             });
         });
     },
-    toggleTaskComplete: function toggleTaskComplete(_ref4, payload) {
+    updateTask: function updateTask(_ref4, payload) {
         var commit = _ref4.commit;
-        var isComplete = payload.isComplete,
+        var task = payload.task,
             id = payload.id;
 
 
-        return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('/api/tasks/' + id, {
-            is_complete: isComplete
-        }).then(function () {
+        return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('/api/tasks/' + id, task).then(function () {
             __WEBPACK_IMPORTED_MODULE_2_vue___default.a.notify({
                 type: 'success',
                 title: 'Todo list',
@@ -23416,14 +23478,14 @@ if (typeof jQuery === 'undefined') {
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(5)();
-exports.push([module.i, "\n.strikethrough[data-v-29e54e83] {\n  text-decoration: line-through;\n}\n.main.container[data-v-29e54e83] {\n  max-width: 400px;\n}\n.todo-list_list-group-item[data-v-29e54e83] {\n  text-align: left;\n  padding-left: 2rem;\n}\n", ""]);
+exports.push([module.i, "\n.strikethrough[data-v-29e54e83] {\n  text-decoration: line-through;\n}\n.main.container[data-v-29e54e83] {\n  max-width: 500px;\n}\n.todo-list_list-group-item[data-v-29e54e83] {\n  text-align: left;\n  padding-left: 2rem;\n}\n.modal-mask[data-v-29e54e83] {\n  position: fixed;\n  z-index: 9998;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, .5);\n  display: table;\n  transition: opacity .3s ease;\n}\n.modal-wrapper[data-v-29e54e83] {\n  display: table-cell;\n  vertical-align: middle;\n}\n.completeCheck[data-v-29e54e83] {\n  float: left;\n  position: relative;\n  top: 4px;\n  left: -15px;\n}\n.task[data-v-29e54e83] {\n  float: left;\n  width: 300px;\n}\n", ""]);
 
 /***/ }),
 /* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(5)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 /* 49 */
@@ -34365,7 +34427,109 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col-md-12"
   }, [_c('div', {
     staticClass: "card mb-5"
-  }, [_vm._m(0), _vm._v(" "), _c('ul', {
+  }, [_vm._m(0), _vm._v(" "), (_vm.showModal) ? _c('div', [_c('transition', {
+    attrs: {
+      "name": "modal"
+    }
+  }, [_c('div', {
+    staticClass: "modal-mask"
+  }, [_c('div', {
+    staticClass: "modal-wrapper"
+  }, [_c('div', {
+    staticClass: "modal-dialog",
+    attrs: {
+      "role": "document"
+    }
+  }, [_c('div', {
+    staticClass: "modal-content"
+  }, [_c('div', {
+    staticClass: "modal-header"
+  }, [_c('h5', {
+    staticClass: "modal-title"
+  }, [_vm._v("Edit Task")]), _vm._v(" "), _c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c('span', {
+    attrs: {
+      "aria-hidden": "true"
+    },
+    on: {
+      "click": function($event) {
+        _vm.showModal = false
+      }
+    }
+  }, [_vm._v("×")])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-body"
+  }, [_c('form', [_c('div', {
+    staticClass: "form-group"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.taskToEdit.title),
+      expression: "taskToEdit.title"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "title",
+      "placeholder": "Title"
+    },
+    domProps: {
+      "value": (_vm.taskToEdit.title)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.taskToEdit, "title", $event.target.value)
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.taskToEdit.details),
+      expression: "taskToEdit.details"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "details",
+      "placeholder": "Details"
+    },
+    domProps: {
+      "value": (_vm.taskToEdit.details)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.taskToEdit, "details", $event.target.value)
+      }
+    }
+  })])])]), _vm._v(" "), _c('div', {
+    staticClass: "modal-footer"
+  }, [_c('button', {
+    staticClass: "btn btn-secondary",
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": function($event) {
+        _vm.showModal = false
+      }
+    }
+  }, [_vm._v("Close")]), _vm._v(" "), _c('async-button', {
+    attrs: {
+      "buttonText": "save",
+      "handler": _vm.editTaskWrapper
+    }
+  })], 1)])])])])])], 1) : _vm._e(), _vm._v(" "), _c('ul', {
     staticClass: "list-group list-group-flush todo-list"
   }, _vm._l((_vm.tasks), function(task) {
     return _c('li', {
@@ -34377,7 +34541,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         value: (task.is_complete),
         expression: "task.is_complete"
       }],
+      staticClass: "completeCheck",
       attrs: {
+        "id": ("completeCheck" + (task.id)),
         "type": "checkbox"
       },
       domProps: {
@@ -34385,7 +34551,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       on: {
         "click": function($event) {
-          return _vm.putTodo(task.id, task.is_complete)
+          return _vm.putTodo(task.id, task)
         },
         "change": function($event) {
           var $$a = task.is_complete,
@@ -34404,9 +34570,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           }
         }
       }
-    }), _vm._v(" "), _c('span', {
-      class: task.is_complete ? 'strikethrough' : ''
-    }, [_vm._v("\n              " + _vm._s(task.title) + " - " + _vm._s(task.details) + "\n            ")])])
+    }), _vm._v(" "), _c('label', {
+      staticClass: "task",
+      class: task.is_complete ? 'strikethrough' : '',
+      attrs: {
+        "for": ("completeCheck" + (task.id))
+      }
+    }, [_vm._v("\n              " + _vm._s(task.title) + " - " + _vm._s(task.details) + "\n            ")]), _vm._v(" "), _c('button', {
+      staticClass: "btn btn-primary float-right",
+      on: {
+        "click": function($event) {
+          return _vm.showModalHandler(task.id)
+        }
+      }
+    }, [_vm._v("Edit")])])
   }), 0)])])])], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
@@ -34415,7 +34592,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "card-title"
   }, [_vm._v("Todos")]), _vm._v(" "), _c('p', {
     staticClass: "card-text"
-  }, [_vm._v("Unarchived tasks are displayed below.")])])
+  }, [_vm._v("A list of tasks.")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {

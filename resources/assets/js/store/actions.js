@@ -41,14 +41,12 @@ export default {
             })
         })
     },
-    toggleTaskComplete({commit}, payload) {
-        const {isComplete, id} = payload
+    updateTask({commit}, payload) {
+        const {task, id} = payload
 
         return axios.put(
           `/api/tasks/${id}`,
-          {
-              is_complete: isComplete,
-          }
+          task
         ).then(() => {
           Vue.notify({
               type: 'success',

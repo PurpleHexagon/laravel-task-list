@@ -24,6 +24,8 @@ class UpdateTask extends FormRequest
     public function rules()
     {
         return [
+            'title' => 'required|max:100',
+            'details' => 'required|max:255',
             'is_complete' => 'required|boolean',
         ];
     }
