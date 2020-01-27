@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Requests\CreateTasks;
+use App\Http\Requests\UpdateTask;
 use App\Task;
 use Illuminate\Http\Request;
 
@@ -20,7 +22,7 @@ Route::middleware([])->get('/tasks', function (Request $request) {
     return $tasks;
 });
 
-Route::middleware([])->post('/tasks', function (\App\Http\Requests\CreateTasks $request) {
+Route::middleware([])->post('/tasks', function (CreateTasks $request) {
     $task = new Task();
     $task->fill([
         'user_id' => $request->post('user_id'),
@@ -32,7 +34,7 @@ Route::middleware([])->post('/tasks', function (\App\Http\Requests\CreateTasks $
     return $task->toArray();
 });
 
-Route::middleware([])->put('/tasks/{task}', function (Request $request, Task $task) {
+Route::middleware([])->put('/tasks/{task}', function (UpdateTask $request, Task $task) {
     $task->is_complete = $request->post('is_complete');
     $task->save();
 
