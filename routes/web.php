@@ -11,7 +11,4 @@
 |
 */
 
-Route::get('/', function () {
-    $tasks = \App\Task::orderBy('id')->get()->toArray();
-    return view('todo-list', ['tasks' => $tasks]);
-});
+Route::get('/', 'IndexAction');

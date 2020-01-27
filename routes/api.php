@@ -16,27 +16,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware([])->get('/tasks', function (Request $request) {
-    $tasks = Task::orderBy('id')->get()->toArray();
-
-    return $tasks;
-});
-
-Route::middleware([])->post('/tasks', function (CreateTasks $request) {
-    $task = new Task();
-    $task->fill([
-        'user_id' => $request->post('user_id'),
-        'title' => $request->post('title'),
-        'details' => $request->post('details'),
-    ]);
-
-    $task->save();
-    return $task->toArray();
-});
-
-Route::middleware([])->put('/tasks/{task}', function (UpdateTask $request, Task $task) {
-    $task->is_complete = $request->post('is_complete');
-    $task->save();
-
-    return $task->toArray();
-});
+Route::middleware([])->get('/tasks', 'Tasks\GetTasksAction');
+Route::middleware([])->post('/tasks', 'Tasks\CreateTaskAction');
+Route::middleware([])->put('/tasks/{task}', 'Tasks\UpdateTaskAction');
