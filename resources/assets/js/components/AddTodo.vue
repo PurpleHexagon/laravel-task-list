@@ -1,13 +1,13 @@
 <template>
   <div class="mb-5">
-    <form>
+    <form v-on:submit.prevent="submit">
       <div class="form-group">
-        <input v-model="title" type="text" class="form-control" id="title" placeholder="Title"/>
+        <input @keyup.enter="submit" v-model="title" type="text" class="form-control" id="title" placeholder="Title"/>
       </div>
       <div class="form-group">
-        <input v-model="details" type="text" class="form-control" id="details" placeholder="Details"/>
+        <input @keyup.enter="submit"  v-model="details" type="text" class="form-control" id="details" placeholder="Details"/>
       </div>
-      <async-button :handler="addTaskWrapper"></async-button>
+      <async-button ref="submitButton" :handler="addTaskWrapper"></async-button>
     </form>
   </div>
 </template>
@@ -37,6 +37,9 @@
             this.title = ''
             this.details = ''
           })
+        },
+        submit() {
+          this.$refs.submitButton.wrappedHandler()
         }
       },
       mapActions(['addTask'])
