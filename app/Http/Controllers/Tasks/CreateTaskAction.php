@@ -22,10 +22,11 @@ class CreateTaskAction extends Controller
         $user = Auth::user();
         $task = new Task();
         $task->fill([
-            'user_id' => $user->id,
             'title' => $request->post('title'),
             'details' => $request->post('details'),
         ]);
+
+        $task->user_id = $user->id;
 
         $task->save();
         return $task->toArray();
