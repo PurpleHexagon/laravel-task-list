@@ -10,19 +10,35 @@ password: secret
 
 Once all commands below have been run you should be able to access the application at http://localhost:8772/
 
+## Quick Start 
+
+```bash
+docker-compose build
+```
+
+```bash
+docker-compose up
+```
+
 ## Requirements
 
-Docker and Docker Compose must both be installed on the host.
+Docker and Docker Compose must both be installed on the host. Once the containers are started you can create databases with the following commands
 
 You will need to create the main database and a test database:
 
 ```sql
-CREATE DATABASE todo_list
+ docker exec -it db bash -c "psql --username=postgres -c 'CREATE DATABASE todo_list;'"
 ```
 
 ```sql
-CREATE DATABASE todo_list_test
+ docker exec -it db bash -c "psql --username=postgres -c 'CREATE DATABASE todo_list_test;'"
 ```
+
+```bash
+bash ./commands.sh
+```
+
+Or run each command in the shell script manually.
 
 This project can be setup with the commands below. Which will also run all migrations and seed database.
 

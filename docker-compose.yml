@@ -2,6 +2,7 @@ version: '2'
 services:
   db:
     image: postgres:10.11
+    container_name: db
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     ports:
