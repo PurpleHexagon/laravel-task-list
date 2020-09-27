@@ -1,6 +1,6 @@
-# Todo List Example Laravel App
+# Huboo Todo List 
 
-This is an example todo list application built with Laravel, Vue JS and Postgres.
+This is a todo list application built with Laravel, Vue JS and Postgres.
 
 Test user credentials:
 
@@ -81,3 +81,37 @@ Run Tests:
 ```bash
 docker exec -it web bash -c "php vendor/bin/phpunit" 
 ```
+
+# New Feature
+
+## Story 
+
+As a user
+
+I want a task to be created to change my password if it has been pwned 
+
+So that my valuable information stays secret
+
+## Acceptance Criteria 
+
+Given I am logged in 
+
+When I enter my password in the check password input
+
+And I have not been pwned
+
+Then I receive a message informing me I'm all secure
+
+---
+
+Given I am logged in 
+
+When I enter my password in the check password input
+
+And I have been pwned
+
+Then a task will be created in the todo list to change my password
+
+## Tech Spec
+
+API Documentation: https://haveibeenpwned.com/API/v3
