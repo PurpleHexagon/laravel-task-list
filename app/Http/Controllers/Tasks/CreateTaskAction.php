@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Tasks;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateTasks;
-use App\Task;
+use App\Services\TasksService;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -14,21 +14,28 @@ use Illuminate\Support\Facades\Auth;
 class CreateTaskAction extends Controller
 {
     /**
+     * @var TasksService
+     */
+    protected TasksService $tasksService;
+
+    /**
+     * CreateTaskAction constructor.
+     * @param TasksService $tasksService
+     */
+    public function __construct(TasksService $tasksService)
+    {
+        $this->tasksService = $tasksService;
+    }
+
+    /**
      * @param CreateTasks $request
      * @return array
      */
     public function __invoke(CreateTasks $request): array
     {
         $user = Auth::user();
-        $task = new Task();
-        $task->fill([
-            'title' => $request->post('title'),
-            'details' => $request->post('details')
-        ]);
+        $task = $this->tasksService->createTask($request->post('title'), $request->post('details'), $user);
 
-        $task->user_id = $user->id;
-
-        $task->save();
         return $task->toArray();
     }
 }
